@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import fontsUrl from '../styles/fonts.css?url';
 import Nav from '../components/Nav.astro';
 import { href } from '../lib/content';
 
@@ -23,6 +24,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <link rel="stylesheet" href={fontsUrl} media="print" onload="this.removeAttribute('media')" />
+    <noscript><link rel="stylesheet" href={fontsUrl} /></noscript>
     <link rel="icon" type="image/svg+xml" href={href('favicon.svg')} />
     <link rel="sitemap" href={href('sitemap-index.xml')} />
     <meta property="og:type" content={title ? 'article' : 'website'} />

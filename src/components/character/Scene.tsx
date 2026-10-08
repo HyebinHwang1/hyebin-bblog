@@ -50,7 +50,8 @@ export default function Scene({ reducedMotion, onReady, onCharacterClick, onMiss
         <circleGeometry args={[0.95, 64]} />
         <meshBasicMaterial color="#15b8a6" transparent opacity={0.18} depthWrite={false} />
       </mesh>
-      <ContactShadows position={[0, 0.002, 0]} scale={3} blur={2.6} far={2.2} opacity={0.42} resolution={512} />
+      {/* 캐릭터가 제자리에 있으므로 그림자는 한 번만 굽는다 */}
+      <ContactShadows frames={1} position={[0, 0.002, 0]} scale={3} blur={2.6} far={2.2} opacity={0.42} resolution={512} />
     </Canvas>
   );
 }
