@@ -1,0 +1,4 @@
+/* 한글 폰트는 unicode-range 조각이 수백 개라 CSS가 크다. Base.astro에서 렌더링을 막지 않게 따로 로드한다 */
+@import '@fontsource/ibm-plex-sans-kr/400.css';
+@import '@fontsource/ibm-plex-sans-kr/500.css';
+@import '@fontsource/ibm-plex-sans-kr/600.css';
