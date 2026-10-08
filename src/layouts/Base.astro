@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import { href } from '../lib/content';
+
+interface Props {
+  title?: string;
+  description?: string;
+  active?: 'about' | 'blog';
+}
+
+const SITE = 'hyebin.dev';
+const { title, description = '프론트엔드 개발자 황혜빈의 블로그', active } = Astro.props;
+const pageTitle = title ? `${title} · ${SITE}` : SITE;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={href('favicon.svg')} />
+    <link rel="sitemap" href={href('sitemap-index.xml')} />
+    <meta property="og:type" content={title ? 'article' : 'website'} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#23272a" media="(prefers-color-scheme: dark)" />
+  </head>
+  <body class="min-h-dvh flex flex-col">
+    <Nav active={active} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <footer class="border-t border-line">
+      <p class="mx-auto max-w-5xl px-5 py-8 text-sm text-muted">© 2026 Hyebin Hwang</p>
+    </footer>
+  </body>
+</html>

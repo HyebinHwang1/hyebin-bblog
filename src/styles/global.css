@@ -1,0 +1,208 @@
+@import 'tailwindcss';
+@import '@fontsource/ibm-plex-sans-kr/400.css';
+@import '@fontsource/ibm-plex-sans-kr/500.css';
+@import '@fontsource/ibm-plex-sans-kr/600.css';
+
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --bg-soft: #f2fbf9;
+  --ink: #1a1a1a;
+  --ink-2: #2f3438;
+  --muted: #8f8f8f;
+  --line: #e6e6e6;
+  --teal: #15b8a6;
+  --teal-deep: #0e8f81;
+  --mint: #e1f6f3;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #23272a;
+    --bg-soft: #2a3034;
+    --ink: #f2fbf9;
+    --ink-2: #dfe8e6;
+    --muted: #9aa5a3;
+    --line: #3a4146;
+    --teal: #2fd0bd;
+    --teal-deep: #15b8a6;
+    --mint: #1f3f3c;
+  }
+}
+
+@theme inline {
+  --font-sans: 'IBM Plex Sans KR', system-ui, sans-serif;
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-teal: var(--teal);
+  --color-teal-deep: var(--teal-deep);
+  --color-mint: var(--mint);
+  --radius-stage: 24px;
+  --radius-card: 16px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.7;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.02em;
+    line-height: 1.35;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--teal);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+}
+
+/* 글 본문. 한글 기준 34~40자 */
+.prose {
+  max-width: 38em;
+  color: var(--ink-2);
+}
+
+.prose > * + * {
+  margin-top: 1.1em;
+}
+
+.prose h2 {
+  margin-top: 2.4em;
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.prose h3 {
+  margin-top: 2em;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--teal-deep);
+}
+
+.prose a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--teal);
+  text-underline-offset: 3px;
+}
+
+.prose a:hover {
+  color: var(--teal-deep);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.4em;
+}
+
+.prose ul {
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li + li {
+  margin-top: 0.35em;
+}
+
+.prose li::marker {
+  color: var(--muted);
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--teal);
+  padding-left: 1em;
+  color: var(--ink-2);
+}
+
+.prose hr {
+  border-color: var(--line);
+  margin: 2.4em 0;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+}
+
+.prose :not(pre) > code {
+  font-size: 0.875em;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  background: var(--bg-soft);
+  color: var(--ink);
+}
+
+.prose pre {
+  overflow-x: auto;
+  padding: 1em 1.2em;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  word-break: normal;
+}
+
+/* 표는 블록 안에서만 가로 스크롤 */
+.prose table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.prose th,
+.prose td {
+  padding: 0.5em 0.9em;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+@media (prefers-color-scheme: dark) {
+  .astro-code,
+  .astro-code span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+  }
+}
